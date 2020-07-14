@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Pirith">
+
+    <include
+        android:id="@+id/pirith_title_bar"
+        layout="@layout/pirith_title_bar" />
+    //app bar
+
+    <ScrollView
+        android:layout_above="@+id/bottomNav"
+        android:layout_below="@+id/pirith_title_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_below="@+id/pirith_title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/pirith_status_val"
+                    android:layout_marginBottom="30dp"
+                    android:text="status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/bg_default_btn"
+                    android:padding="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:padding="5dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="10dp"
+                                        android:src="@drawable/eve_pirith_img" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:text="Evening Pirith Chanting"
+                                        android:textSize="15dp" />
+                                </LinearLayout>
+                                //label
+
+                                <RelativeLayout
+                                    android:id="@+id/eve_play_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="10dp"
+                                    android:background="@drawable/bg_btn_play"
+                                    android:onClick="eve_pirith_plst"
+                                    android:paddingLeft="20dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingBottom="10dp">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:text="BEGIN"
+                                            android:textColor="@color/white" />
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:src="@drawable/play_img" />
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+                                //play btn
+
+                                <RelativeLayout
+                                    android:id="@+id/eve_stop_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="10dp"
+                                    android:background="@drawable/bg_btn_stop"
+                                    android:onClick="eve_pirith_plst"
+                                    android:paddingLeft="20dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingBottom="10dp"
+                                    android:visibility="gone">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:text="STOP"
+                                            android:textColor="@color/white" />
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:src="@drawable/stop_img" />
+                                    </LinearLayout>
+                                </RelativeLayout>
+                                //stop btn
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+                        //btn layout
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:fontFamily="sans-serif"
+                                android:onClick="toggle_eve_settings"
+                                android:text="Settings"
+                                android:textSize="15dp"></TextView>
+
+                            <ImageView
+                                android:id="@+id/eve_set_ex_more_img"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_expand_more_black_24dp" />
+
+                            <ImageView
+                                android:id="@+id/eve_set_ex_less_img"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_expand_less_black_24dp"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/toggle_eve_settings_status_val"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:visibility="gone" />
+                        </LinearLayout>
+                        //eve set lbl
+
+                        <RelativeLayout
+                            android:id="@+id/eve_settings_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/bg_default_btn"
+                            android:elevation="4dp"
+                            android:padding="20dp"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <LinearLayout
+                                        android:orientation="vertical"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content">
+
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="10dp"
+                                            android:padding="5dp">
+
+                                            <TextView
+                                                android:layout_gravity="center"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginRight="20dp"
+                                                android:text="Starting time : " />
+
+                                            <TextView
+                                                android:layout_gravity="center"
+                                                android:id="@+id/eve_p_str_time"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="---" />
+
+                                            <TextView
+                                                android:layout_gravity="center"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text=" : 00   " />
+
+                                        </LinearLayout>
+                                        //str time
+
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="10dp"
+                                            android:padding="5dp">
+
+                                            <TextView
+                                                android:layout_gravity="center"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginRight="20dp"
+                                                android:text="End time : " />
+
+                                            <TextView
+                                                android:layout_gravity="center"
+                                                android:id="@+id/eve_p_end_time"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="---" />
+
+                                            <TextView
+                                                android:layout_gravity="center"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text=" : 00   " />
+
+                                        </LinearLayout>
+                                        //end time
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_gravity="center"
+                                        android:orientation="vertical"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content">
+
+                                        <Button
+                                            android:onClick="plus_eve_value"
+                                            android:layout_gravity="center"
+                                            android:background="@drawable/ic_expand_less_black_24dp"
+                                            android:layout_width="30dp"
+                                            android:layout_height="30dp"/>
+
+                                        <Button
+                                            android:onClick="min_eve_value"
+                                            android:layout_gravity="center"
+                                            android:background="@drawable/ic_expand_more_black_24dp"
+                                            android:layout_width="30dp"
+                                            android:layout_height="30dp"/>
+
+                                    </LinearLayout>
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:padding="5dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="20dp"
+                                        android:text="Duration : " />
+
+                                    <LinearLayout
+                                        android:background="@drawable/duration_lbl"
+                                        android:paddingLeft="10dp"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="10dp"
+                                        android:paddingBottom="5dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:textColor="@color/white"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="1 " />
+
+                                        <TextView
+                                            android:textColor="@color/white"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=" Hour" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                                //duration
+
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+                        //eve_settings_layout
+
+
+                    </LinearLayout>
+                    //container
+
+
+                </RelativeLayout>
+                //Evening Pirith chanting
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/bg_default_btn"
+                    android:padding="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:padding="5dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="10dp"
+                                        android:src="@drawable/mid_pirith_img" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="10dp"
+                                        android:text="Midnight Pirith Chanting"
+                                        android:textSize="15dp" />
+                                </LinearLayout>
+                                //label
+
+                                <RelativeLayout
+                                    android:id="@+id/mid_play_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="10dp"
+                                    android:background="@drawable/bg_btn_play"
+                                    android:onClick="mid_pirith_plst"
+                                    android:paddingLeft="20dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingBottom="10dp">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:text="BEGIN"
+                                            android:textColor="@color/white" />
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:src="@drawable/play_img" />
+                                    </LinearLayout>
+
+                                </RelativeLayout>
+                                //play btn
+
+                                <RelativeLayout
+                                    android:id="@+id/mid_stop_btn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="10dp"
+                                    android:background="@drawable/bg_btn_stop"
+                                    android:onClick="mid_pirith_plst"
+                                    android:paddingLeft="20dp"
+                                    android:paddingTop="10dp"
+                                    android:paddingRight="20dp"
+                                    android:paddingBottom="10dp"
+                                    android:visibility="gone">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:text="STOP"
+                                            android:textColor="@color/white" />
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:src="@drawable/stop_img" />
+                                    </LinearLayout>
+                                </RelativeLayout>
+                                //stop btn
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+                        //btn layout
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:fontFamily="sans-serif"
+                                android:onClick="toggle_mid_settings"
+                                android:text="Settings"
+                                android:textSize="15dp"></TextView>
+
+                            <ImageView
+                                android:id="@+id/mid_set_ex_more_img"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_expand_more_black_24dp" />
+
+                            <ImageView
+                                android:id="@+id/mid_set_ex_less_img"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_expand_less_black_24dp"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/toggle_mid_settings_status_val"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:visibility="gone" />
+                        </LinearLayout>
+                        //mid set lbl
+
+                        <RelativeLayout
+                            android:visibility="gone"
+                            android:id="@+id/mid_settings_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/bg_default_btn"
+                            android:elevation="4dp"
+                            android:padding="20dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:padding="5dp">
+
+                                    <TextView
+                                        android:layout_gravity="center"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="20dp"
+                                        android:text="Starting time : " />
+
+                                    <TextView
+                                        android:layout_gravity="center"
+                                        android:id="@+id/mid_p_str_time"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="0" />
+
+                                    <TextView
+                                        android:layout_gravity="center"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=" : 00" />
+
+                                    <LinearLayout
+                                        android:layout_marginLeft="20dp"
+                                        android:orientation="vertical"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content">
+                                        <Button
+                                            android:onClick="plus_mid_str_value"
+                                            android:layout_gravity="center"
+                                            android:background="@drawable/ic_expand_less_black_24dp"
+                                            android:layout_width="30dp"
+                                            android:layout_height="30dp"/>
+
+                                        <Button
+                                            android:onClick="min_mid_str_value"
+                                            android:layout_gravity="center"
+                                            android:background="@drawable/ic_expand_more_black_24dp"
+                                            android:layout_width="30dp"
+                                            android:layout_height="30dp"/>
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                                //str time
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:padding="5dp">
+
+                                    <TextView
+                                        android:layout_gravity="center"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="20dp"
+                                        android:text="End time : " />
+
+                                    <TextView
+                                        android:layout_gravity="center"
+                                        android:id="@+id/mid_p_end_time"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="7" />
+
+                                    <TextView
+                                        android:layout_gravity="center"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=" : 00" />
+
+                                    <LinearLayout
+                                        android:layout_marginLeft="20dp"
+                                        android:orientation="vertical"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content">
+                                        <Button
+                                            android:onClick="plus_mid_end_value"
+                                            android:layout_gravity="center"
+                                            android:background="@drawable/ic_expand_less_black_24dp"
+                                            android:layout_width="30dp"
+                                            android:layout_height="30dp"/>
+
+                                        <Button
+                                            android:onClick="min_mid_end_value"
+                                            android:layout_gravity="center"
+                                            android:background="@drawable/ic_expand_more_black_24dp"
+                                            android:layout_width="30dp"
+                                            android:layout_height="30dp"/>
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                                //end time
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="10dp"
+                                    android:padding="5dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="20dp"
+                                        android:text="Duration : " />
+
+                                    <LinearLayout
+                                        android:background="@drawable/duration_lbl"
+                                        android:paddingLeft="10dp"
+                                        android:paddingTop="5dp"
+                                        android:paddingRight="10dp"
+                                        android:paddingBottom="5dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content">
+
+                                        <TextView
+                                            android:id="@+id/mid_time_duration"
+                                            android:textColor="@color/white"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="---" />
+
+                                        <TextView
+                                            android:textColor="@color/white"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text=" Hour" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                                //duration
+
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+                        //mid_settings_layout
+
+
+                    </LinearLayout>
+                    //container
+
+
+                </RelativeLayout>
+                //midnight Pirith chanting
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider" />
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:onClick="switch_to_overview"
+                android:id="@+id/nav_overview"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_overview"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+            //nav_overview
+
+            <RelativeLayout
+                android:onClick="switch_to_water"
+                android:id="@+id/nav_water"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_water"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+            //nav_water
+
+            <RelativeLayout
+                android:onClick="switch_to_light"
+                android:id="@+id/nav_lights"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_light"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+            //nav_lights
+
+            <RelativeLayout
+                android:onClick="switch_to_pirith"
+                android:id="@+id/nav_pirith"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_pirith_active"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+            //nav_pirith
+
+            <RelativeLayout
+                android:onClick="switch_to_device"
+                android:id="@+id/nav_device"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_device"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+                <TextView
+                    android:id="@+id/Device_online_time_d_indicator"
+                    android:text="●"
+                    android:textSize="20dp"
+                    android:textColor="@color/transparent"
+                    android:layout_margin="2dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            //nav_Device
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    //bottom navigation
+
+    <RelativeLayout
+        android:id="@+id/progressbar_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#804B4747"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:indeterminateDrawable="@drawable/bg_progress_bar_design" />
+    </RelativeLayout>
+    //progress bar
+
+</RelativeLayout>

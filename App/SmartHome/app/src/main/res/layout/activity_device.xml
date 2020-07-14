@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Device">
+
+    <include
+        android:id="@+id/Device_title_bar"
+        layout="@layout/device_title_bar" />
+    //app bar
+
+    <ScrollView
+        android:layout_above="@+id/bottomNav"
+        android:layout_below="@+id/Device_title_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/water_level_layout"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_device_title"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <RelativeLayout
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp">
+
+                    <LinearLayout
+                        android:layout_centerInParent="true"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:layout_marginBottom="5dp"
+                            android:text="Status : "
+                            android:textSize="20sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:padding="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/lst_time_display"
+                            android:text="-/-"
+                            android:textSize="20sp"
+                            android:fontFamily="sans-serif-thin"
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+            //status
+
+            <RelativeLayout
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/device_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Device Reboot"
+                            android:textSize="20sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+
+                    <Button
+                        android:onClick="rebootdevice"
+                        android:text="Reboot"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_btn_play"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            //Reboot
+
+            <RelativeLayout
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/person_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="User"
+                            android:textSize="20sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/user_email_dis"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:text="example@gmail.com"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif-thin"
+                        android:textColor="@color/darkGray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <Button
+                        android:onClick="logout"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="30dp"
+                        android:paddingRight="30dp"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_btn"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:text="logout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            //Reboot
+
+
+        </LinearLayout>
+        //Device
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:onClick="switch_to_overview"
+                android:id="@+id/nav_overview"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_overview"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+            //nav_overview
+
+            <RelativeLayout
+                android:onClick="switch_to_water"
+                android:id="@+id/nav_water"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_water"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+            //nav_water
+
+            <RelativeLayout
+                android:onClick="switch_to_light"
+                android:id="@+id/nav_lights"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_light"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+            //nav_lights
+
+            <RelativeLayout
+                android:onClick="switch_to_pirith"
+                android:id="@+id/nav_pirith"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_pirith"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+            //nav_pirith
+
+            <RelativeLayout
+                android:onClick="switch_to_device"
+                android:id="@+id/nav_device"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_device_active"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+                <TextView
+                    android:id="@+id/Device_online_time_d_indicator"
+                    android:text="●"
+                    android:textColor="@color/transparent"
+                    android:textSize="20dp"
+                    android:layout_margin="2dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            //nav_Device
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    //bottom navigation
+
+    <RelativeLayout
+        android:id="@+id/progressbar_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#804B4747"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:indeterminateDrawable="@drawable/bg_progress_bar_design" />
+    </RelativeLayout>
+    //progress bar
+
+</RelativeLayout>

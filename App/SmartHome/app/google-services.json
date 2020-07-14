@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "21004874174",
+    "firebase_url": "https://smarthome-ad51f.firebaseio.com",
+    "project_id": "smarthome-ad51f",
+    "storage_bucket": "smarthome-ad51f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:21004874174:android:5cb108cc8a01d308",
+        "android_client_info": {
+          "package_name": "squadra.helix.smarthome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "21004874174-6kb31lphve141g4lc4a8aop6ttvt2chm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "squadra.helix.smarthome",
+            "certificate_hash": "4544e02be97332f4a6aa67749a4283f8401dac22"
+          }
+        },
+        {
+          "client_id": "21004874174-0jl92bfckhrn73nu2d8stt50p54v3h2r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "squadra.helix.smarthome",
+            "certificate_hash": "93b31833e5baf619b967da11034fbd08ccc239e2"
+          }
+        },
+        {
+          "client_id": "21004874174-1aqcgk94o1sp6scg71f58bcjm8dbjpgr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBV8iOpb753LB8d4xGEC54UDOj_r6lYR-s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "21004874174-1aqcgk94o1sp6scg71f58bcjm8dbjpgr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

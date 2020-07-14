@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Lights">
+
+    <include
+        android:id="@+id/lights_title_bar"
+        layout="@layout/light_title_bar" />
+    //app bar
+
+    <ScrollView
+        android:layout_above="@+id/bottomNav"
+        android:layout_below="@+id/lights_title_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_lights_title"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <RelativeLayout
+                    android:layout_margin="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp">
+
+                    <LinearLayout
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:orientation="vertical"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/lights_mode"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="5dp"
+                            android:text="Mode"
+                            android:textSize="20sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/lightscountdisplay"
+                            android:text="0"
+                            android:textSize="50dp"
+                            android:fontFamily="sans-serif-thin"
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:text="/4"
+                            android:textSize="50dp"
+                            android:fontFamily="sans-serif-thin"
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+            //light title layout
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_marginTop="30dp"
+                    android:layout_centerHorizontal="true"
+                    android:orientation ="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:id="@+id/light_1_off"
+                            android:layout_margin ="20dp"
+                            android:background="@drawable/bg_tiles_gray"
+                            android:onClick="toggle_light_1"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp">
+
+                            <LinearLayout
+                                android:orientation ="vertical"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/light_off"
+                                    android:layout_width="75dp"
+                                    android:layout_height="75dp" />
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:visibility="gone"
+                            android:id="@+id/light_1_on"
+                            android:onClick="toggle_light_1"
+                            android:layout_margin ="20dp"
+                            android:background="@drawable/bg_tiles_yellow"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp">
+
+                            <LinearLayout
+                                android:orientation ="vertical"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/light_on"
+                                    android:layout_width="75dp"
+                                    android:layout_height="75dp" />
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/light_2_off"
+                            android:layout_margin ="20dp"
+                            android:background="@drawable/bg_tiles_gray"
+                            android:onClick="toggle_light_2"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp">
+
+                            <LinearLayout
+                                android:orientation ="vertical"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/light_off"
+                                    android:layout_width="75dp"
+                                    android:layout_height="75dp" />
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:visibility="gone"
+                            android:id="@+id/light_2_on"
+                            android:onClick="toggle_light_2"
+                            android:layout_margin ="20dp"
+                            android:background="@drawable/bg_tiles_yellow"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp">
+
+                            <LinearLayout
+                                android:orientation ="vertical"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/light_on"
+                                    android:layout_width="75dp"
+                                    android:layout_height="75dp" />
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                    //line 1
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:id="@+id/light_3_off"
+                            android:layout_margin ="20dp"
+                            android:background="@drawable/bg_tiles_gray"
+                            android:onClick="toggle_light_3"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp">
+
+                            <LinearLayout
+                                android:orientation ="vertical"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/light_off"
+                                    android:layout_width="75dp"
+                                    android:layout_height="75dp" />
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:visibility="gone"
+                            android:id="@+id/light_3_on"
+                            android:onClick="toggle_light_3"
+                            android:layout_margin ="20dp"
+                            android:background="@drawable/bg_tiles_yellow"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp">
+
+                            <LinearLayout
+                                android:orientation ="vertical"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/light_on"
+                                    android:layout_width="75dp"
+                                    android:layout_height="75dp" />
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/light_4_off"
+                            android:layout_margin ="20dp"
+                            android:background="@drawable/bg_tiles_gray"
+                            android:onClick="toggle_light_4"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp">
+
+                            <LinearLayout
+                                android:orientation ="vertical"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/light_off"
+                                    android:layout_width="75dp"
+                                    android:layout_height="75dp" />
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:visibility="gone"
+                            android:id="@+id/light_4_on"
+                            android:onClick="toggle_light_4"
+                            android:layout_margin ="20dp"
+                            android:background="@drawable/bg_tiles_yellow"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp">
+
+                            <LinearLayout
+                                android:orientation ="vertical"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/light_on"
+                                    android:layout_width="75dp"
+                                    android:layout_height="75dp" />
+                            </LinearLayout>
+
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                    //line 2
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="0"
+                            android:id="@+id/light1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="0"
+                            android:id="@+id/light2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="0"
+                            android:id="@+id/light3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="0"
+                            android:id="@+id/light4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            //body
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider" />
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:onClick="switch_to_overview"
+                android:id="@+id/nav_overview"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_overview"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+            //nav_overview
+
+            <RelativeLayout
+                android:onClick="switch_to_water"
+                android:id="@+id/nav_water"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_water"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+            //nav_water
+
+            <RelativeLayout
+                android:onClick="switch_to_light"
+                android:id="@+id/nav_lights"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_light_active"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+            //nav_lights
+
+            <RelativeLayout
+                android:onClick="switch_to_pirith"
+                android:id="@+id/nav_pirith"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_pirith"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+            //nav_pirith
+
+            <RelativeLayout
+                android:onClick="switch_to_device"
+                android:id="@+id/nav_device"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_device"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+                <TextView
+                    android:id="@+id/Device_online_time_d_indicator"
+                    android:text="●"
+                    android:textSize="20dp"
+                    android:textColor="@color/transparent"
+                    android:layout_margin="2dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            //nav_Device
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    //bottom navigation
+
+    <RelativeLayout
+        android:id="@+id/progressbar_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#804B4747"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:indeterminateDrawable="@drawable/bg_progress_bar_design" />
+    </RelativeLayout>
+    //progress bar
+
+</RelativeLayout>

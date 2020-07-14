@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Water">
+
+
+    <include
+        android:id="@+id/water_title_bar"
+        layout="@layout/water_title_bar" />
+    //app bar
+
+
+    <ScrollView
+        android:layout_above="@+id/bottomNav"
+        android:layout_below="@+id/water_title_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:visibility="visible"
+            android:id="@+id/water_layout"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/water_level_layout"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_water_precentage_cnt"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+
+                <RelativeLayout
+                    android:layout_margin="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:id="@+id/water_status_message_text"
+                        android:layout_marginBottom="5dp"
+                        android:text="Status"
+                        android:layout_toLeftOf="@+id/water_act_water_percentage"
+                        android:textSize="15sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/white"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/water_act_water_percentage"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:text="-/-"
+                        android:textSize="50dp"
+                        android:fontFamily="sans-serif-thin"
+                        android:textColor="@color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+            //water_level_layout
+
+            <RelativeLayout
+                android:id="@+id/water_pump_layout"
+                android:layout_below="@+id/water_level_layout"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:src="@drawable/water_img"
+                            android:layout_marginRight="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:text="Water Pump"
+                            android:textSize="20sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:layout_gravity="center"
+                        android:id="@+id/water_act_water_pump_btn"
+                        android:onClick="water_act_water_pump_btn_onClick"
+                        android:layout_marginTop="10dp"
+                        android:text="-/-"
+                        android:textColor="@color/white"
+                        android:background="@drawable/bg_default_btn"
+                        android:textSize="15sp"
+                        android:fontFamily="monospace"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp" />
+
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            //water_pump_layout
+
+            <RelativeLayout
+                android:layout_marginBottom="20dp"
+                android:id="@+id/water_pump_settings"
+                android:layout_below="@+id/water_pump_layout"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/water_pump_settings_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:src="@drawable/settings_img"
+                            android:layout_marginRight="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:text="Settings"
+                            android:textSize="20sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/set_display_layout"
+                        android:padding="20dp"
+                        android:background="@drawable/bg_default_btn"
+                        android:layout_marginTop="20dp"
+                        android:layout_below="@+id/water_pump_settings_title"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_centerVertical="true"
+                                android:text="Max Water Level :"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:layout_centerVertical="true"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:id="@+id/WATER_watertank_end_water_level_display"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/input_email"
+                                android:inputType="number"
+                                android:hint="%"
+                                android:textSize="15dp"
+                                android:padding="5dp"
+                                android:gravity="center_horizontal" />
+
+                        </RelativeLayout>
+                        //max water level
+
+                        <RelativeLayout
+                            android:layout_marginTop="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_centerVertical="true"
+                                android:text="Critical Water Level :"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:id="@+id/WATER_watertank_critical_water_level_display"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/input_email"
+                                android:inputType="number"
+                                android:hint="%"
+                                android:textSize="15dp"
+                                android:padding="5dp"
+                                android:gravity="center_horizontal" />
+
+                        </RelativeLayout>
+                        //critical water level
+
+                        <LinearLayout
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/bg_default_btn"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:paddingRight="20dp"
+                            android:paddingLeft="20dp"
+                            android:onClick="switch_to_edit_settings"
+                            android:layout_gravity="right"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:textSize="15dp"
+                                android:layout_gravity="center"
+                                android:text="Edit "
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <ImageView
+                                android:layout_gravity="center"
+                                android:src="@drawable/edit_img"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"/>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    //display layout
+
+                    <LinearLayout
+                        android:id="@+id/set_input_layout"
+                        android:visibility="gone"
+                        android:padding="20dp"
+                        android:background="@drawable/bg_default_btn"
+                        android:layout_marginTop="20dp"
+                        android:layout_below="@+id/water_pump_settings_title"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_centerVertical="true"
+                                android:text="Max Water Level :"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <EditText
+                                android:layout_centerVertical="true"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:id="@+id/WATER_watertank_end_water_level_input"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/input_email"
+                                android:background="@drawable/bg_default_btn"
+                                android:inputType="number"
+                                android:hint="%"
+                                android:textSize="15dp"
+                                android:padding="5dp"
+                                android:gravity="center_horizontal" />
+
+                        </RelativeLayout>
+                        //max water level
+
+                        <RelativeLayout
+                            android:layout_marginTop="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_centerVertical="true"
+                                android:text="Critical Water Level :"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <EditText
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:id="@+id/WATER_watertank_critical_water_level_input"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_below="@+id/input_email"
+                                android:background="@drawable/bg_default_btn"
+                                android:inputType="number"
+                                android:hint="%"
+                                android:textSize="15dp"
+                                android:padding="5dp"
+                                android:gravity="center_horizontal" />
+
+                        </RelativeLayout>
+                        //critical water level
+
+                        <Button
+                            android:layout_gravity="center"
+                            android:onClick="Save_minimum_critical_water_level"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/checkBoxRememberMe"
+                            android:layout_marginTop="20dp"
+                            android:background="@drawable/bg_btn_play"
+                            android:paddingLeft="70dp"
+                            android:paddingRight="70dp"
+                            android:text="save"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
+                    //edit layout
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+            //water_pump_settings
+
+        </RelativeLayout>
+        //water
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider" />
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:onClick="switch_to_overview"
+                android:id="@+id/nav_overview"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_overview"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+            //nav_overview
+
+            <RelativeLayout
+                android:onClick="switch_to_water"
+                android:id="@+id/nav_water"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_water_active"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+            //nav_water
+
+            <RelativeLayout
+                android:onClick="switch_to_light"
+                android:id="@+id/nav_lights"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_light"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+            //nav_lights
+
+            <RelativeLayout
+                android:onClick="switch_to_pirith"
+                android:id="@+id/nav_pirith"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_pirith"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+            </RelativeLayout>
+            //nav_pirith
+
+            <RelativeLayout
+                android:onClick="switch_to_device"
+                android:id="@+id/nav_device"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav_device"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+                <TextView
+                    android:id="@+id/Device_online_time_d_indicator"
+                    android:text="●"
+                    android:textSize="20dp"
+                    android:textColor="@color/transparent"
+                    android:layout_margin="2dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            //nav_Device
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    //bottom navigation
+
+    <RelativeLayout
+        android:id="@+id/progressbar_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#804B4747"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:indeterminateDrawable="@drawable/bg_progress_bar_design" />
+    </RelativeLayout>
+    //progress bar
+
+
+
+
+
+</RelativeLayout>

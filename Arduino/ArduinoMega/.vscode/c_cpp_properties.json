@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:\\Users\\Helix\\AppData\\Local\\Arduino15\\packages\\arduino\\tools\\**",
+                "C:\\Users\\Helix\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.2\\**",
+                "C:/Users/Helix/AppData/Local/Arduino15/packages/arduino/hardware/avr/1.8.2/libraries/SoftwareSerial/src",
+                "C:\\Users\\Helix\\Documents\\Arduino\\libraries",
+                "C:\\Program Files (x86)\\Arduino\\libraries",
+                "C:/Program Files (x86)/Arduino/libraries/Servo/src",
+                "C:/Program Files (x86)/Arduino/libraries/SD/src",
+                "C:/Users/Helix/Documents/Arduino/libraries/TMRpcm"
+            ],
+            "forcedInclude": [
+                "C:\\Users\\Helix\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.2\\cores\\arduino\\Arduino.h"
+            ],
+            "intelliSenseMode": "msvc-x64"
+        }
+    ],
+    "version": 4
+}

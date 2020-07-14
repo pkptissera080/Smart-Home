@@ -1,0 +1,7 @@
+{
+    "port": "COM4",
+    "programmer": "AVRISP mkII",
+    "board": "arduino:avr:mega",
+    "configuration": "cpu=atmega2560",
+    "sketch": "final_ArduinoMega_model.ino"
+}

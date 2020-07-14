@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Smart Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/logo_gray.png" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/v4-shims.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!--===============================================================================================-->
+</head>
+
+<style>
+    html,
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        font-family: "Raleway", sans-serif
+    }
+</style>
+
+<body class="w3-light-grey">
+
+    <!-- Top container -->
+    <div class="w3-bar w3-top w3-dark-gray w3-large" style="z-index:4">
+        <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+        <span class="w3-bar-item w3-right" onclick="switch_to_overview()"><img src="images/icons/logo_white.png"
+                alt="SmartHome" style="height:25px;width:auto;cursor: pointer;"></span>
+    </div>
+
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+        <div class="w3-container w3-row">
+            <div class="w3-col s4">
+                <img src="images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
+            </div>
+            <div class="w3-col s8 w3-bar">
+                <h5 id="user_email">---</h5>
+            </div>
+        </div>
+        <hr>
+        <div class="w3-container">
+            <h5>Dashboard</h5>
+        </div>
+        <div class="w3-bar-block">
+            <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+            <a href="#" onclick="switch_to_overview()" id="db_overview" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-pie-chart"></i>  Overview</a>
+            <a href="#" onclick="switch_to_water()" id="db_water" class="w3-bar-item w3-button w3-padding"><i
+                    class="fa fa-tint"></i>  Water</a>
+            <a href="#" onclick="switch_to_pirith()" id="db_pirith" class="w3-bar-item w3-button w3-padding"><i
+                    class="fa fa-users fa-fw"></i>  Pirith Chanting</a>
+            <a href="#" onclick="switch_to_lights()" id="db_lights" class="w3-bar-item w3-button w3-padding"><i
+                    class="fa fa-lightbulb-o"></i>  Lights</a>
+            <a href="#" onclick="logout()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-sign-out"></i>  Sign
+                out</a><br><br>
+
+            <div style="display: none;">
+                <center>
+                    <table border="1">
+                        <caption>Data table</caption>
+                        <tr>
+                            <td>Last online time</td>
+                            <td id="td_lot">---</td>
+                        </tr>
+                        <tr>
+                            <td>Waterlevel</td>
+                            <td id="td_wl">---</td>
+                        </tr>
+                        <tr>
+                            <td>Critical waterlevel</td>
+                            <td id="td_cwl">---</td>
+                        </tr>
+                        <tr>
+                            <td>Max waterlevel</td>
+                            <td id="td_mwl">---</td>
+                        </tr>
+                        <tr>
+                            <td>water pump status</td>
+                            <td id="td_wps">---</td>
+                        </tr>
+                        <tr>
+                            <td>Pirith system status</td>
+                            <td id="td_pss">---</td>
+                        </tr>
+                        <tr>
+                            <td>P eve start time</td>
+                            <td id="td_pest">---</td>
+                        </tr>
+                        <tr>
+                            <td>P eve end time</td>
+                            <td id="td_peet">---</td>
+                        </tr>
+                        <tr>
+                            <td>P mid start time</td>
+                            <td id="td_pmst">---</td>
+                        </tr>
+                        <tr>
+                            <td>P mid end time</td>
+                            <td id="td_pmet">---</td>
+                        </tr>
+                    </table>
+                </center>
+            </div>
+            <!--Data table-->
+
+        </div>
+    </nav>
+
+
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+        <!-- OVERVIEW   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <div style="display: block;" id="Overview_div">
+
+            <!-- Header -->
+            <header class="w3-container" style="padding-top:22px">
+                <h5 style="margin: 10px;"><b><i class="fa fa-pie-chart"></i>  Overview</b></h5>
+            </header>
+
+            <div class="w3-row-padding w3-margin-bottom">
+
+
+                <div class="w3-third" style="margin-bottom: 16px; cursor: pointer;" onclick="switch_to_water()">
+                    <div class="w3-container w3-blue w3-padding-16 overviewDiv">
+                        <div class="w3-left"><img src="images/icons/water_white.png" alt="" style="width: 50%;height: 50%;"></div>
+                        <div class="w3-right">
+                            <h3 id="overview_water_precnt_view">---</h3>
+                        </div>
+                        <div class="w3-clear"></div>
+                        <h4>Water</h4>
+                        <label id="overview_water_msg_view" style="font-size: 10px;"></label>
+                    </div>
+                </div>
+                <div class="w3-third" style="margin-bottom: 16px; cursor: pointer;" onclick="switch_to_pirith()">
+                    <div class="w3-container w3-orange w3-text-white w3-padding-16 overviewDiv">
+                        <div class="w3-left"><img src="images/icons/buddhist_white.png" alt="" style="width: 50%;height: 50%;"></div>
+                        <div class="w3-right">
+                            <h3 id="overview_pirith_system_status">---</h3>
+                        </div>
+                        <div class="w3-clear"></div>
+                        <h4>Pirith</h4>
+                        <label id="overview_pirith_msg_view" style="font-size: 10px;"></label>
+                    </div>
+                </div>
+                <div class="w3-third" style="margin-bottom: 16px; cursor: pointer;" onclick="switch_to_lights()">
+                    <div class="w3-container w3-purple w3-padding-16 overviewDiv">
+                        <div class="w3-left"><img src="images/icons/light_white.png" alt="" style="width: 50%;height: 50%;"></div>
+                        <div class="w3-right">
+                            <h3 id="onLightsCounterOverview"></h3>
+                        </div>
+                        <div class="w3-clear"></div>
+                        <h4>Lights</h4>
+                        <label id="lightsModeOverview" style="font-size: 10px;"></label>
+                    </div>
+                </div>
+
+            </div>
+
+            <header class="w3-container" style="padding-top:22px">
+                <h5 style="margin: 10px;"><b><i class="fa fa-hdd-o" aria-hidden="true"></i>  Device status </b><label class="dscv">---</label></h5>
+            </header>
+
+            <div class="w3-row-padding w3-margin-bottom">
+                <div class="w3-quarter" style="margin-bottom: 16px;">
+                    <div class="w3-container w3-transparent w3-padding-16" style="border: 2px solid darkgray;">
+                        <h6>Last online time :<label class="dotv">---</label> </h6>
+                    </div>
+                </div>
+            </div>
+
+            <header class="w3-container" style="padding-top:22px">
+                <h5 style="margin: 10px;"><b><i class="fa fa-hdd-o" aria-hidden="true"></i>  Device Reboot </b></h5>
+            </header>
+
+            <div class="w3-row-padding w3-margin-bottom">
+                <div class="w3-quarter" style="margin-bottom: 16px;">
+                    <div class="w3-container w3-transparent w3-padding-16">
+                        <button class="btn" onclick="reboot()" id="reboot_btn">Reboot</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+        <!-- WATER   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <div style="display: none;" id="Water_div">
+            <!-- Header -->
+            <header class="w3-container" style="padding-top:22px">
+                <h5 style="margin: 10px;"><b><i class="fa fa-tint" aria-hidden="true"></i>  Water</b><label class="dscv">---</label></h5>
+            </header>
+
+            <div class="w3-row-padding w3-margin-bottom">
+
+                <div class="w3-half" style="margin-bottom: 16px;">
+                    <center>
+                        <br><br>
+                        <label id="wsm">---</label><br><br>
+                        <div id="tank-design-top"></div>
+                        <div id="tank-design-body">
+                            <h1 id="precentage">---</h1>
+                            <div id="tank-water-container">
+                                <div id="tank-water-level"></div>
+                                <div id="max_level_indicater_div">
+                                    <label id="max_level_indicater" title="Max water level" class="water_level_indicater">---</label>
+                                </div>
+                                <div id="critical_level_indicater_div">
+                                    <label id="critical_level_indicater" title="Critical water level" class="water_level_indicater">---</label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </center>
+                </div>
+
+                <div class="w3-half" style="margin-bottom: 16px;">
+
+                    <hr noshade="noshade">
+
+                    <div class="sub_div">
+                        <h5 style="margin: 10px;"><i class="fa fa-tint" aria-hidden="true"></i>  Water Pump</h5>
+                        <div>
+                            <center>
+                                <button class="btn" id="wps_change_btn" onclick="change_wps()">---</button>
+                            </center>
+                        </div>
+                    </div>
+
+                    <hr noshade="noshade">
+
+                    <div class="sub_div">
+                        <h5 style="margin: 10px;"><i class="fa fa-cogs" aria-hidden="true"></i>  Settings</h5>
+                        <div>
+                            <center>
+                                <table>
+                                    <tr>
+                                        <td class="set_title">Max water level</td>
+                                        <td>
+                                            <input id="mwl_input" type="number" class="set_input w3-center" onchange="save_settings()" onfocusout="err_clr()">
+                                            <label id="mwl_view" class="set_view w3-center">---</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="set_title">Critical water level</td>
+                                        <td>
+                                            <input id="cwl_input" type="number" class="set_input w3-center" onchange="save_settings()" onfocusout="err_clr()">
+                                            <label id="cwl_view" class="set_view w3-center">---</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <button class="btn-edit" style="float: right;" id="data_edit_btn" onclick="switch_to_save()"><i class="fa fa-pencil-square-o"
+                                                    aria-hidden="true"></i> Edit</button>
+                                            <button class="btn btn-green" style="float: right;display: none;" id="data_save_btn" onclick="switch_to_edit()">Save</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <label id="error_lbl" style="color:red;font-weight: 100px;"></label>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </center>
+                        </div>
+                    </div>
+
+                    <hr noshade="noshade">
+
+                </div>
+
+            </div>
+        </div>
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+        <!-- PIRITH   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <div style="display: none;" id="Pirith_div">
+            <!-- Header -->
+            <header class="w3-container" style="padding-top:22px">
+                <h5 style="margin: 10px;"><b><i class="fa fa-users fa-fw"></i>  Pirith Chanting</b><label class="dscv">---</label></h5>
+            </header>
+
+            <div class="w3-row-padding w3-margin-bottom" id="p_text_div" style="display: none;">
+                <div class="w3-half" style="margin-bottom: 16px;">
+                    <div style="padding: 20px 0px 0px 20px;">
+                        <label class="yellow_lbl" id="p_text">---</label>
+                    </div>
+                </div>
+            </div>
+            <!-- Evening -->
+            <div class="w3-row-padding w3-margin-bottom">
+
+                <div class="w3-half" style="margin-bottom: 16px;">
+                    <div style="padding: 20px;border: 2px solid darkgray;border-radius: 5px;">
+                        <h6 style="margin: 10px;"><i class="fa fa-sun-o"></i> Evening Pirith Chanting</h6><br>
+                        <center>
+                            <button class="btn btn-green" id="eve_p_p_btn" onclick="pirith_change(1)">Begin <i
+                                    class="fa fa-play" aria-hidden="true"></i></button>
+                            <button class="btn btn-red" id="eve_p_s_btn" onclick="pirith_change(10)" style="display: none;">Stop <i class="fa fa-stop" aria-hidden="true"></i></button>
+                            <button class="btn" id="wait_btn_1" style="display: none;">Wait <i
+                                    class="fa fa-refresh fa-spin"></i></button>
+                        </center>
+                        <h6 onclick="show_hide_settings(1)" style="cursor: pointer;margin-left: 30px;">Settings <i class="fa fa-chevron-down" id="settings_icon1"></i>
+                        </h6>
+                        <div class="tb_container_div" id="tb_container_div1" style="display: none;">
+                            <center>
+                                <table>
+                                    <tr>
+                                        <td>Staring time :</td>
+                                        <td>
+                                            <label id="set_eve_start_time_view">-</label><label> : 00</label>
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-chevron-up pointer" aria-hidden="true " onclick="change_value_eve(1)" onmouseleave="err_clr()"></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>End time :</td>
+                                        <td>
+                                            <label id="set_eve_end_time_view" on>-</label><label> : 00</label>
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-chevron-down pointer" aria-hidden="true " onclick="change_value_eve(-1)" onmouseleave="err_clr()"></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4"><br></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Duration :</td>
+                                        <td colspan="2">
+                                            <center><label class="yellow_lbl">1 Hour</label></center>
+                                        </td>
+                                    </tr>
+                                    <tr id="P_eve_err_br" style="display: none;">
+                                        <td colspan="4"><br></td>
+                                    </tr>
+                                    <tr id="P_eve_err_lbl" style="display: none;">
+                                        <td colspan="4">
+                                            <center><label style="color: white;background-color: mediumseagreen;padding: 5px;border-radius: 5px;">Data has been saved</label></center>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--MidNight-->
+            <div class="w3-row-padding w3-margin-bottom ">
+
+                <div class="w3-half " style="margin-bottom: 16px; ">
+                    <div style="padding: 20px;border: 2px solid darkgray; border-radius: 5px;">
+                        <h6 style="margin: 10px; "><i class="fa fa-moon-o "></i>  Midnight Pirith Chanting</h6><br>
+                        <center>
+                            <button class="btn btn-green " id="midn_p_p_btn" onclick="pirith_change(2) ">Begin <i
+                                    class="fa fa-play " aria-hidden="true "></i></button>
+                            <button class="btn btn-red " id="midn_p_s_btn" onclick="pirith_change(20) " style="display: none; ">Stop <i class="fa fa-stop " aria-hidden="true "></i></button>
+                            <button class="btn " id="wait_btn_2" style="display: none; ">Wait <i
+                                    class="fa fa-refresh fa-spin "></i></button>
+                        </center>
+                        <h6 onclick="show_hide_settings(2)" style="cursor: pointer;margin-left: 30px;">Settings <i class="fa fa-chevron-down" id="settings_icon2"></i>
+                        </h6>
+                        <div class="tb_container_div" id="tb_container_div2" style="display: none;">
+                            <center>
+                                <table>
+                                    <tr>
+                                        <td rowspan="2">Staring time :</td>
+
+                                        <td rowspan="2">
+                                            <label id="set_mid_start_time_view">-</label><label> : 00</label>
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-chevron-up pointer" aria-hidden="true " onclick="change_value_mid(1)" onmouseleave="err_clr()"></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="fa fa-chevron-down pointer" aria-hidden="true " onclick="change_value_mid(-1)" onmouseleave="err_clr()"></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2 ">End time :</td>
+
+                                        <td rowspan="2 ">
+                                            <label id="set_mid_end_time_view">-</label><label> : 00</label>
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-chevron-up pointer" aria-hidden="true " onclick="change_value_mid(2)" onmouseleave="err_clr()"></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <i class="fa fa-chevron-down pointer" aria-hidden="true " onclick="change_value_mid(-2)" onmouseleave="err_clr()"></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4"><br></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Duration :</td>
+                                        <td colspan="2">
+                                            <center>
+                                                <label class="yellow_lbl">
+                                                    <label id="dur_mid" class="yellow_lbl">-</label>
+                                                <label> Hours</label>
+                                                </label>
+                                            </center>
+                                        </td>
+                                    </tr>
+                                    <tr id="P_mid_err_br" style="display: none;">
+                                        <td colspan="4"><br></td>
+                                    </tr>
+                                    <tr id="P_mid_err_lbl" style="display: none;">
+                                        <td colspan="4">
+                                            <center><label style="color: white;background-color: mediumseagreen;padding: 5px;border-radius: 5px;">Data has been saved</label></center>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+        <!-- LIGHTS   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <div style="display: none;" id="lights_div">
+            <!-- Header -->
+            <header class="w3-container " style="padding-top:22px ">
+                <h5 style="margin: 10px; "><b><i class="far fa-lightbulb "></i>  Lights</b><label class="dscv ">---</label></h5>
+            </header>
+
+            <div class="w3-padding w3-margin">
+                <div class="w3-row-padding w3-margin-bottom ">
+                    <div class="w3-third" style="margin-bottom: 16px; cursor: pointer;">
+                        <div class="w3-container w3-padding-16">
+                            <div>
+                                <h4>
+                                    <label id="lightsMode">Mode</label>
+                                    <label style="margin-left: 25px;" id="onLightsCounter">--</label>
+                                </h4>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-row-padding w3-margin-bottom ">
+
+                    <div class="w3-col" style="width: 100px;margin-bottom: 16px; cursor: pointer;">
+                        <div class="w3-container w3-light-gray w3-padding-16 overviewDiv" id="off_lights_1" onclick="toggle_lights(1,1)">
+                            <div>
+                                <center>
+                                    <i class="far fa-lightbulb w3-xxxlarge"></i>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="w3-container w3-yellow w3-padding-16 overviewDiv dnone" id="on_lights_1" onclick="toggle_lights(1,0)">
+                            <div>
+                                <center>
+                                    <i class="fas fa-lightbulb w3-xxxlarge"></i>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w3-col" style="width: 100px;margin-bottom: 16px; cursor: pointer;">
+                        <div class="w3-container w3-light-gray w3-padding-16 overviewDiv" id="off_lights_2" onclick="toggle_lights(2,1)">
+                            <div>
+                                <center>
+                                    <i class="far fa-lightbulb w3-xxxlarge"></i>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="w3-container w3-yellow w3-padding-16 overviewDiv dnone" id="on_lights_2" onclick="toggle_lights(2,0)">
+                            <div>
+                                <center>
+                                    <i class="fas fa-lightbulb w3-xxxlarge"></i>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="w3-row-padding w3-margin-bottom ">
+
+                    <div class="w3-col" style="width: 100px;margin-bottom: 16px; cursor: pointer;">
+                        <div class="w3-container w3-light-gray w3-padding-16 overviewDiv" id="off_lights_3" onclick="toggle_lights(3,1)">
+                            <div>
+                                <center>
+                                    <i class="far fa-lightbulb w3-xxxlarge"></i>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="w3-container w3-yellow w3-padding-16 overviewDiv dnone" id="on_lights_3" onclick="toggle_lights(3,0)">
+                            <div>
+                                <center>
+                                    <i class="fas fa-lightbulb w3-xxxlarge"></i>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w3-col" style="width: 100px;margin-bottom: 16px; cursor: pointer;">
+                        <div class="w3-container w3-light-gray w3-padding-16 overviewDiv" id="off_lights_4" onclick="toggle_lights(4,1)">
+                            <div>
+                                <center>
+                                    <i class="far fa-lightbulb w3-xxxlarge"></i>
+                                </center>
+                            </div>
+                        </div>
+                        <div class="w3-container w3-yellow w3-padding-16 overviewDiv dnone" id="on_lights_4" onclick="toggle_lights(4,0)">
+                            <div>
+                                <center>
+                                    <i class="fas fa-lightbulb w3-xxxlarge"></i>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+
+
+
+
+
+        <!-- Footer -->
+        <footer class="w3-container w3-padding-16 w3-light-grey ">
+            <div class="w3-row-padding ">
+
+                <img src="images/icons/firebase.png " style="width: 25px; height: 25px; ">
+
+                <img src="images/icons/arduino.png " style="width: 25px; height: 25px; ">
+
+                <img src="images/icons/android.png " style="width: 25px; height: 25px; ">
+
+                <img src="images/icons/html.png " style="width: 25px; height: 25px; ">
+
+                <img src="images/icons/javascript.png " style="width: 25px; height: 25px; ">
+
+                <img src="images/icons/css.png " style="width: 25px; height: 25px; ">
+            </div>
+        </footer>
+
+        <!-- End page content -->
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js "></script>
+    <script src="js/main.js "></script>
+    <script src="js/home.js "></script>
+
+</body>
+
+</html>
