@@ -62,12 +62,45 @@ function logout() {
 //--------------------------------------------------------------------------------------------------------------------------------------
 
 var dotv_class = document.getElementsByClassName("dotv");
-var dscv_class = document.getElementsByClassName("dscv");
+
+
+const System_log = firebase.database().ref().child('System/log');
+System_log.on('value', snap => {
+    var System_log = (snap.val());
+    logTable(System_log);
+});
+
+var logIndex = 0;
+
+function logTable(logData) {
+    var logTable = document.getElementById('logTable');
+    const logArr = logData.split("\n\\");
+    for (let index = 0; index < logArr.length; index++) {
+        const element = logArr[index];
+        var htmlEle = '<tr class="log-tr w3-pale-green">' +
+            '<td><pre class="w3-right-align">' + (index + 1 + logIndex) + '</pre></td>' +
+            '<td><pre>|</pre></td>' +
+            '<td><pre>' + element + '</pre></td>' +
+            '</tr>';
+        logTable.innerHTML = logTable.innerHTML + htmlEle;
+    }
+    var logTableFoot = document.getElementById("logTableFoot");
+    logTableFoot.scrollIntoView();
+    logIndex = logIndex + logArr.length;
+
+    setTimeout(() => {
+        var newLogClass = logTable.getElementsByClassName('log-tr');
+        for (let index = 0; index < newLogClass.length; index++) {
+            newLogClass[index].classList.remove('w3-pale-green');
+        }
+        console.log(newLogClass.length);
+    }, 2000);
+}
 
 //--------------------------------------------------------------------------------------------------------------------------------------
 
 //get WATER_system_last_online_time
-const Device_online_time = firebase.database().ref().child('Device_online_time');
+const Device_online_time = firebase.database().ref().child('System/online_time');
 Device_online_time.on('value', snap => {
     var Device_online_time = (snap.val());
     document.getElementById("td_lot").innerHTML = Device_online_time;
@@ -81,7 +114,8 @@ function change_color() {
 
 setInterval(change_color, 500);
 
-function device_online_ofline_check() {
+function device_online_offline_check() {
+    var dscv_class = document.getElementsByClassName('dscv');
 
     var lst_time = dotv_class[0].innerHTML;
     var lst_time_hours = parseInt(lst_time.split(":")[0]);
@@ -89,20 +123,18 @@ function device_online_ofline_check() {
     var lst_time_sec = parseInt(lst_time.split(":")[2]);
 
     var liveDate = new Date();
-    var livehours = liveDate.getHours();
-    var liveminutes = liveDate.getMinutes();
-    var livesec = liveDate.getSeconds();
+    var liveHours = liveDate.getHours();
+    var liveMinutes = liveDate.getMinutes();
+    var liveSec = liveDate.getSeconds();
 
+    if (liveHours == lst_time_hours) {
 
-
-    if (livehours == lst_time_hours) {
-
-        var difMinutes = liveminutes - lst_time_minutes;
+        var difMinutes = liveMinutes - lst_time_minutes;
 
         if (difMinutes == 0) {
-            var difsec = livesec - lst_time_sec;
+            var difSec = liveSec - lst_time_sec;
 
-            if (difsec >= 12) {
+            if (difSec >= 12) {
                 var i;
                 for (i = 0; i < dscv_class.length; i++) {
                     dscv_class[i].innerHTML = "Offline";
@@ -117,9 +149,9 @@ function device_online_ofline_check() {
             }
 
         } else if (difMinutes == 1) {
-            var difsec = (60 + livesec) - lst_time_sec;
+            var difSec = (60 + liveSec) - lst_time_sec;
 
-            if (difsec >= 12) {
+            if (difSec >= 12) {
                 var i;
                 for (i = 0; i < dscv_class.length; i++) {
                     dscv_class[i].innerHTML = "Offline";
@@ -150,4 +182,4 @@ function device_online_ofline_check() {
 
 }
 
-setInterval(device_online_ofline_check, 1000);
+setInterval(device_online_offline_check, 1000);

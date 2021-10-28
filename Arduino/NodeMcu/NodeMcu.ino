@@ -12,7 +12,7 @@ Timezone myLocalTime ;
 #define LED_B D5
 
 int device_type = 1;
-int Select_database = 1;
+int Select_database = 2;
 int Select_wifi = 1;
 int Set_default_val = 0;
 
@@ -47,95 +47,95 @@ int Val_Lights_bulb_3_4_status;
 
 void setup()
 {
-  Serial.begin(9600);
-  NodeMCU.begin(9600);
+  Serial.begin(115200);
+  NodeMCU.begin(115200);
   Serial.println(" ");
   Serial.println(" ");
   Serial.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
   Serial.println("/////System booted/////");
 
   //----------------------------------------------------------------SET PIN PORTS
-    pinMode(LED_G, OUTPUT);
-    pinMode(LED_R, OUTPUT);
-    pinMode(LED_B, OUTPUT);
-    pinMode(trigPin, OUTPUT);
-    pinMode(echoPin, INPUT);
+  pinMode(LED_G, OUTPUT);
+  pinMode(LED_R, OUTPUT);
+  pinMode(LED_B, OUTPUT);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
   //----------------------------------------------------------------
 
   //----------------------------------------------------------------WIFI
-  
-    //Select Wifi--------------
-    if(Select_wifi == 1){
-      WIFI_SSID = "/<4V!Y4___" ;
-      WIFI_PASSWORD = ",N5Ea;n%F-v9+nd:" ;
-    }else if(Select_wifi == 2){
-      WIFI_SSID = "kk" ;
-      WIFI_PASSWORD = "1234567890" ;
-    }else if(Select_wifi == 3){
-      WIFI_SSID = "NGuest" ;
-      WIFI_PASSWORD = "N$bM@123" ;
-    }else{}
-    //--------------
-    
-    //Conecting to Wifi--------------
-    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-    Serial.print("Connecting to ");
-    Serial.print(WIFI_SSID);
-    while (WiFi.status() != WL_CONNECTED){
-      Serial.print(".");
-      digitalWrite(LED_R, HIGH);
-      delay(100);
-      digitalWrite(LED_R, LOW);
-      delay(100);
-    }
-    //--------------
 
-    //Connected to Wifi--------------
-    Serial.println();
-    Serial.println("WIFI Connected");
-    Serial.println(WiFi.localIP());
-    digitalWrite(LED_G, HIGH);
-    delay(500);
-    digitalWrite(LED_G, LOW);
-    //--------------
-    
+  //Select Wifi--------------
+  if (Select_wifi == 1) {
+    WIFI_SSID = "SLT_FIRE" ;
+    WIFI_PASSWORD = "dhk@1998" ;
+  } else if (Select_wifi == 2) {
+    WIFI_SSID = "kk" ;
+    WIFI_PASSWORD = "1234567890" ;
+  } else if (Select_wifi == 3) {
+    WIFI_SSID = "NGuest" ;
+    WIFI_PASSWORD = "N$bM@123" ;
+  } else {}
+  //--------------
+
+  //Conecting to Wifi--------------
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Serial.print("Connecting to ");
+  Serial.print(WIFI_SSID);
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    digitalWrite(LED_R, HIGH);
+    delay(100);
+    digitalWrite(LED_R, LOW);
+    delay(100);
+  }
+  //--------------
+
+  //Connected to Wifi--------------
+  Serial.println();
+  Serial.println("WIFI Connected");
+  Serial.println(WiFi.localIP());
+  digitalWrite(LED_G, HIGH);
+  delay(500);
+  digitalWrite(LED_G, LOW);
+  //--------------
+
   //----------------------------------------------------------------
 
   //----------------------------------------------------------------FIREBASE
-  
-    //Select database--------------
-    if(Select_database == 1){
-      FIREBASE_HOST = "smarthome-ad51f.firebaseio.com";
-      FIREBASE_AUTH = "9xFPR5ajjpQyzribPnB6GFBGH7rI5fRLL7MkoxGv";
-    }
-    else if(Select_database == 2){
-      FIREBASE_HOST = "testpro-d48db.firebaseio.com";
-      FIREBASE_AUTH = "NITXzvtzxCFNqBAL4eh4wVdpktcVWHr33dykhOJ6";
-    }else{}
-    //--------------
-    
-    //firebase connection--------------
-    Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
-    Serial.print("FIREBASE_HOST : ");
-    Serial.println(FIREBASE_HOST);
-    //--------------
-    
+
+  //Select database--------------
+  if (Select_database == 1) {
+    FIREBASE_HOST = "smarthome-ad51f.firebaseio.com";
+    FIREBASE_AUTH = "9xFPR5ajjpQyzribPnB6GFBGH7rI5fRLL7MkoxGv";
+  }
+  else if (Select_database == 2) {
+    FIREBASE_HOST = "testpro-d48db.firebaseio.com";
+    FIREBASE_AUTH = "NITXzvtzxCFNqBAL4eh4wVdpktcVWHr33dykhOJ6";
+  } else {}
+  //--------------
+
+  //firebase connection--------------
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
+  Serial.print("FIREBASE_HOST : ");
+  Serial.println(FIREBASE_HOST);
+  //--------------
+
   //----------------------------------------------------------------
 
   //----------------------------------------------------------------Ez Time
-    Serial.println("Synchronize with an internet time server ....");
-    myLocalTime.setLocation(F("lk"));
+  Serial.println("Synchronize with an internet time server ....");
+  myLocalTime.setLocation(F("lk"));
 
-    digitalWrite(LED_B, HIGH);
-    while (!waitForSync(3))
-    {
-      Serial.println("timeSync FAILED!!");
-      sys_restart();
-    }
-    digitalWrite(LED_B, LOW);
-    digitalWrite(LED_G, HIGH);
-    Serial.println("Got timeSync");
-    digitalWrite(LED_G, LOW);
+  digitalWrite(LED_B, HIGH);
+  while (!waitForSync(3))
+  {
+    Serial.println("timeSync FAILED!!");
+    sys_restart();
+  }
+  digitalWrite(LED_B, LOW);
+  digitalWrite(LED_G, HIGH);
+  Serial.println("Got timeSync");
+  digitalWrite(LED_G, LOW);
   //----------------------------------------------------------------
 
   Serial.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
@@ -156,7 +156,7 @@ void loop()
 
   //----------------------------------------------------------------Water_system
   int WATER_sub_system_status = Firebase.getInt("WATER_sub_system_status");
-  if(WATER_sub_system_status == 1){
+  if (WATER_sub_system_status == 1) {
     Serial.println("-----------------------Water_system");
     digitalWrite(LED_G, HIGH);
     Water_system();
@@ -164,14 +164,14 @@ void loop()
     delay(100);
     Serial.println("-----------------------");
   }
-  else{
+  else {
     Serial.println("Skipped Water sub system /-> ");
   }
   //----------------------------------------------------------------
 
   //----------------------------------------------------------------Pirith_system
   int Pirith_sub_system_status = Firebase.getInt("Pirith_sub_system_status");
-  if(Pirith_sub_system_status == 1){
+  if (Pirith_sub_system_status == 1) {
     Serial.println("-----------------------Pirith_system");
     digitalWrite(LED_G, HIGH);
     Pirith_system();
@@ -179,14 +179,14 @@ void loop()
     delay(100);
     Serial.println("-----------------------");
   }
-  else{
+  else {
     Serial.println("Skipped Pirith sub system /-> ");
   }
   //----------------------------------------------------------------
 
   //----------------------------------------------------------------Lights_system
   int Lights_sub_system_status = Firebase.getInt("Lights_sub_system_status");
-  if(Lights_sub_system_status == 1){
+  if (Lights_sub_system_status == 1) {
     Serial.println("-----------------------Lights_system");
     digitalWrite(LED_G, HIGH);
     Lights_system();
@@ -194,15 +194,15 @@ void loop()
     delay(100);
     Serial.println("-----------------------");
   }
-  else{
+  else {
     Serial.println("Skipped Lights sub system /-> ");
   }
   //----------------------------------------------------------------
 
   //----------------------------------------------------------------send data
   digitalWrite(LED_G, HIGH);
- 
-  String SendValue = "1" + String(Val_WATER_waterpump_status) + String(Val_Pirith_system_status)+ String(Val_Lights_bulb_1_2_status)+ String(Val_Lights_bulb_3_4_status);
+
+  String SendValue = "1" + String(Val_WATER_waterpump_status) + String(Val_Pirith_system_status) + String(Val_Lights_bulb_1_2_status) + String(Val_Lights_bulb_3_4_status);
 
   Serial.print("SendValue : ");
   Serial.println(SendValue);
@@ -238,21 +238,21 @@ int Water_system()
   Serial.print("distance :");
   Serial.println(distance);
 
-  if(device_type == 1){
+  if (device_type == 1) {
     Serial.println("Device type  :  Home");
     maxHeightOfTank = 119;
-    if(Set_default_val == 1){
+    if (Set_default_val == 1) {
       distance = 53;
     }
   }
-  else if(device_type == 2){
+  else if (device_type == 2) {
     Serial.println("Device type  : Model");
     maxHeightOfTank = 27;
-    if(Set_default_val == 1){
+    if (Set_default_val == 1) {
       distance = 8;
     }
   }
-  else{}
+  else {}
 
   if (distance == 0)
   {
@@ -261,15 +261,15 @@ int Water_system()
   }
   else if (distance <= maxHeightOfTank)
   {
-    if(device_type == 1){
+    if (device_type == 1) {
       tank_capacity = 119 - distance ;
     }
-    else if(device_type == 2){
+    else if (device_type == 2) {
       tank_capacity = 100 - (((distance - 6) * 100) / 20);
     }
-    else{}
-    
-    
+    else {}
+
+
     // set tank_free_capacity
     Firebase.setFloat("WATER_watertank_capacity", tank_capacity);
     Serial.print("WATER_watertank_capacity  : ");
@@ -332,18 +332,6 @@ int Pirith_system()
   int Pirith_mid_str_time = Firebase.getInt("Pirith_mid_str_time");
   int Pirith_mid_end_time = Firebase.getInt("Pirith_mid_end_time");
 
-  /*Serial.print("int_str_hours :");
-  Serial.println(int_str_hours);
-  Serial.print("Pirith_eve_str_time :");
-  Serial.println(Pirith_eve_str_time);
-  Serial.print("Pirith_eve_end_time :");
-  Serial.println(Pirith_eve_end_time);
-  Serial.print("Pirith_mid_str_time :");
-  Serial.println(Pirith_mid_str_time);
-  Serial.print("Pirith_mid_end_time :");
-  Serial.println(Pirith_mid_end_time);*/
-  
-
   if (Pirith_system_remote_control == 0)
   {
     if (Pirith_eve_str_time <= int_str_hours && int_str_hours < Pirith_eve_end_time)
@@ -396,9 +384,9 @@ int Lights_system()
   int Lights_bulb_4 = Firebase.getInt("Lights_bulb_4_status");
   int Lights_system_mode = Firebase.getInt("Lights_system_mode");
 
-  if(Lights_system_mode == 0){
+  if (Lights_system_mode == 0) {
     Serial.println("Lights_system_mode : Auto");
-    if(19 <= int_str_hours && int_str_hours < 22){
+    if (19 <= int_str_hours && int_str_hours < 22) {
       Firebase.setInt("Lights_bulb_1_status", 1);
       Firebase.setInt("Lights_bulb_2_status", 1);
       Firebase.setInt("Lights_bulb_3_status", 1);
@@ -408,7 +396,7 @@ int Lights_system()
       Val_Lights_bulb_3_status = 1;
       Val_Lights_bulb_4_status = 1;
     }
-    else{
+    else {
       Val_Lights_bulb_1_status = 0;
       Val_Lights_bulb_2_status = 0;
       Val_Lights_bulb_3_status = 0;
@@ -416,17 +404,17 @@ int Lights_system()
     }
   }
   else {
-    
-    if(Lights_bulb_1 == 0 && Lights_bulb_2 == 0 && Lights_bulb_3 == 0 && Lights_bulb_4 == 0){
+
+    if (Lights_bulb_1 == 0 && Lights_bulb_2 == 0 && Lights_bulb_3 == 0 && Lights_bulb_4 == 0) {
       Firebase.setInt("Lights_system_mode", 0);
       Serial.println("Lights_system_mode : Auto");
-      
+
       Val_Lights_bulb_1_status = 0;
       Val_Lights_bulb_2_status = 0;
       Val_Lights_bulb_3_status = 0;
       Val_Lights_bulb_4_status = 0;
     }
-    else{
+    else {
       Firebase.setInt("Lights_system_mode", 1);
       Serial.println("Lights_system_mode : Manual");
       Val_Lights_bulb_1_status = Lights_bulb_1;
@@ -436,25 +424,25 @@ int Lights_system()
     }
   }
 
-  if(Val_Lights_bulb_1_status == 1 && Val_Lights_bulb_2_status == 0){
+  if (Val_Lights_bulb_1_status == 1 && Val_Lights_bulb_2_status == 0) {
     Val_Lights_bulb_1_2_status = 1;
-  }else if(Val_Lights_bulb_1_status == 0 && Val_Lights_bulb_2_status == 1){
+  } else if (Val_Lights_bulb_1_status == 0 && Val_Lights_bulb_2_status == 1) {
     Val_Lights_bulb_1_2_status = 2;
-  }else if(Val_Lights_bulb_1_status == 1 && Val_Lights_bulb_2_status == 1){
+  } else if (Val_Lights_bulb_1_status == 1 && Val_Lights_bulb_2_status == 1) {
     Val_Lights_bulb_1_2_status = 3;
-  }else if(Val_Lights_bulb_1_status == 0 && Val_Lights_bulb_2_status == 0){
+  } else if (Val_Lights_bulb_1_status == 0 && Val_Lights_bulb_2_status == 0) {
     Val_Lights_bulb_1_2_status = 4;
-  }else{}
+  } else {}
 
-  if(Val_Lights_bulb_3_status == 1 && Val_Lights_bulb_4_status == 0){
+  if (Val_Lights_bulb_3_status == 1 && Val_Lights_bulb_4_status == 0) {
     Val_Lights_bulb_3_4_status = 1;
-  }else if(Val_Lights_bulb_3_status == 0 && Val_Lights_bulb_4_status == 1){
+  } else if (Val_Lights_bulb_3_status == 0 && Val_Lights_bulb_4_status == 1) {
     Val_Lights_bulb_3_4_status = 2;
-  }else if(Val_Lights_bulb_3_status == 1 && Val_Lights_bulb_4_status == 1){
+  } else if (Val_Lights_bulb_3_status == 1 && Val_Lights_bulb_4_status == 1) {
     Val_Lights_bulb_3_4_status = 3;
-  }else if(Val_Lights_bulb_3_status == 0 && Val_Lights_bulb_4_status == 0){
+  } else if (Val_Lights_bulb_3_status == 0 && Val_Lights_bulb_4_status == 0) {
     Val_Lights_bulb_3_4_status = 4;
-  }else{}
+  } else {}
   String Lights_system_status = String(Val_Lights_bulb_1_status) + String(Val_Lights_bulb_2_status) + String(Val_Lights_bulb_3_status) + String(Val_Lights_bulb_4_status);
   Serial.println("Lights_system_status : " + Lights_system_status);
 }
@@ -509,7 +497,7 @@ int sys_restart()
   ESP.reset();
 }
 
-int Get_dateNtime(){
+int Get_dateNtime() {
 
   Serial.println(myLocalTime.dateTime());
 
@@ -518,29 +506,29 @@ int Get_dateNtime(){
   int error_val = error();
 
   /*
-  Serial.println("");
-  Serial.println("//////////////////////////////////");
-  
-  Serial.print("timeStatus :  ");
-  Serial.println(timeStatus_val);
-  
-  Serial.print("Status :  ");
-  Serial.print(errorString_val);
-  Serial.print(" ( ");
-  Serial.print(error_val);
-  Serial.println(" ) ");
+    Serial.println("");
+    Serial.println("//////////////////////////////////");
 
-  Serial.println("//////////////////////////////////");
-  Serial.println("");
+    Serial.print("timeStatus :  ");
+    Serial.println(timeStatus_val);
+
+    Serial.print("Status :  ");
+    Serial.print(errorString_val);
+    Serial.print(" ( ");
+    Serial.print(error_val);
+    Serial.println(" ) ");
+
+    Serial.println("//////////////////////////////////");
+    Serial.println("");
   */
 
-  if(timeStatus_val != 2 || error_val != 0){
+  if (timeStatus_val != 2 || error_val != 0) {
     Serial.print("Status :  ");
     Serial.println(errorString_val);
-    
+
     Serial.print("lastNtpUpdateTime :  ");
     Serial.println(lastNtpUpdateTime());
-  
+
     sys_restart();
   }
 
@@ -551,19 +539,19 @@ int Get_dateNtime(){
   str_seconds = myLocalTime.dateTime("s");
 
   /*
-  Serial.println("");
-  Serial.println("//////////////////////////////////");
-  Serial.print("Time :  ");
-  Serial.println(Time);
-  Serial.print("Date :  ");
-  Serial.println(Date);
-  Serial.print("Hours :  ");
-  Serial.println(str_hours);
-  Serial.print("Minutes :  ");
-  Serial.println(str_minutes);
-  Serial.print("Seconds :  ");
-  Serial.println(str_seconds);
-  Serial.println("//////////////////////////////////");
-  Serial.println("");
+    Serial.println("");
+    Serial.println("//////////////////////////////////");
+    Serial.print("Time :  ");
+    Serial.println(Time);
+    Serial.print("Date :  ");
+    Serial.println(Date);
+    Serial.print("Hours :  ");
+    Serial.println(str_hours);
+    Serial.print("Minutes :  ");
+    Serial.println(str_minutes);
+    Serial.print("Seconds :  ");
+    Serial.println(str_seconds);
+    Serial.println("//////////////////////////////////");
+    Serial.println("");
   */
 }

@@ -200,7 +200,6 @@ function change_wps() {
     } else if (wps_val == 1) {
         firebaseRef.child("WATER_waterpump_status").set(0);
     } else {}
-
 }
 
 function save_settings() {
@@ -235,7 +234,6 @@ function save_settings() {
             document.getElementById("error_lbl").innerHTML = "<b style='color:LimeGreen;'>Settings have been saved</b>";
 
         }
-
 
     } else {
         rld_data();
@@ -395,7 +393,6 @@ const Pirith_mid_str_time = firebase.database().ref().child('Pirith_mid_str_time
 Pirith_mid_str_time.on('value', snap => {
     var Pirith_mid_str_time = JSON.stringify(snap.val());
     document.getElementById("td_pmst").innerHTML = Pirith_mid_str_time;
-    set_mid_start_time_view
     document.getElementById("set_mid_start_time_view").innerHTML = Pirith_mid_str_time;
     find_duration();
 });

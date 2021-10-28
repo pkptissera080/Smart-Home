@@ -37,8 +37,8 @@ int Lights_bulb_4_status = 0;
 
 void setup()
 {
-  Serial.begin(9600);
-  ArduinoMega.begin(9600);
+  Serial.begin(115200);
+  ArduinoMega.begin(115200);
   Serial.println(" ");
   Serial.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
   Serial.println("/////System booted/////");
